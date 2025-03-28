@@ -1,27 +1,23 @@
-import { getPlaiceholder} from "plaiceholder";
+import { getPlaiceholder } from "plaiceholder";
 import type { Photo, ImagesResults } from "@/models/Images"
 
-async function getBase64(imageUrl : string) {
-
-try{
-    const res = await fetch(imageUrl)
-
-    if (!res.ok){
-           throw new Error( `Failed to fetch images: ${res.status} ${res.statusText}`)
-
+// This function should be used server-side only
+export async function getBase64(imageUrl: string): Promise<string> {
+  try {
+    const res = await fetch(imageUrl);
+    
+    if (!res.ok) {
+      throw new Error(`Failed to fetch image: ${res.status} ${res.statusText}`);
     }
-       const buffer = await res.arrayBuffer()
-
-       const { base64 } = await getPlaiceholder(Buffer.from
-        (buffer))
-
-    //    console.log(base64)]
-
-       return base64
- 
-} catch (e){
-    if (e instanceof Error ) console.log(e.stack)  
-} 
+    
+    const buffer = await res.arrayBuffer();
+    const { base64 } = await getPlaiceholder(Buffer.from(buffer));
+    
+    return base64;
+  } catch (error) {
+    console.error("Error generating blurred image:", error);
+    return "";
+  }
 }
 
 export default async function addBlurredDataUrls( images:

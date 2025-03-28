@@ -20,33 +20,40 @@ export default function Footer({ topic, page, prevPage, nextPage}: Props) {
 
     // Link for next page
     const nextPageArea = nextPage ? (
-        <Link href={`/results/${topic}/${nextPage}`} className={!prevPage ? "mx-auto" : ""}>
-            {!prevPage ? "More" : ""} &gt;&gt;&gt;
+        <Link href={`/results/${topic}/${nextPage}`} 
+              className={`flex items-center justify-center px-4 py-2 rounded-md bg-slate-200 hover:bg-slate-300 transition-colors ${!prevPage ? "mx-auto" : ""}`}>
+            <span className="font-medium">{!prevPage ? "More" : "Next"}</span>
+            <span className="ml-2">›</span>
         </Link>
     ) : null;
 
     // Link for previous page
     const prevPageArea = prevPage ? (
-        <>
-            <Link href={`/results/${topic}/${prevPage}`} className={!nextPage ? "mx-auto" : ""}>
-                &lt;&lt;&lt; {!nextPage ? "Back" : ""}
+        <div className="flex items-center gap-2">
+            <Link href={`/results/${topic}/${prevPage}`} 
+                  className={`flex items-center justify-center px-4 py-2 rounded-md bg-slate-200 hover:bg-slate-300 transition-colors ${!nextPage ? "mx-auto" : ""}`}>
+                <span className="mr-2">‹</span>
+                <span className="font-medium">{!nextPage ? "Back" : "Prev"}</span>
             </Link>
 
             {/* Display page numbers between prev and next */}
-            {pageNums.map(num => (
-                page && num === parseInt(page)
-                    ? <span key={num} className="font-bold">{num}</span> // Highlight current page
-                    : (
-                        <Link key={num} href={`/results/${topic}/${num}`} className="underline">
-                            {num}
-                        </Link>
-                    )
-            ))}
-        </>
+            <div className="flex gap-2 items-center">
+                {pageNums.map(num => (
+                    page && num === parseInt(page)
+                        ? <span key={num} className="flex items-center justify-center w-8 h-8 rounded-full bg-blue-500 text-white font-medium">{num}</span> // Highlight current page
+                        : (
+                            <Link key={num} href={`/results/${topic}/${num}`} 
+                                  className="flex items-center justify-center w-8 h-8 rounded-full hover:bg-slate-200 transition-colors">
+                                {num}
+                            </Link>
+                        )
+                ))}
+            </div>
+        </div>
     ) : null;
 
     return (
-        <footer className="flex flex-row justify-between items-center px-2 py-4 font-bold w-60 mx-auto">
+        <footer className="flex flex-row justify-between items-center px-4 py-6 mt-8 border-t border-slate-200 max-w-3xl mx-auto">
             {prevPageArea}
             {nextPageArea}
         </footer>

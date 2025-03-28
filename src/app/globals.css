@@ -1,3 +1,38 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --font-montserrat: var(--font-montserrat);
+  --font-poppins: var(--font-poppins);
+}
+
+body {
+  background-color: #ffffff;
+  color: #1a1a1a;
+}
+
+.font-montserrat {
+  font-family: var(--font-montserrat), system-ui, sans-serif;
+  letter-spacing: -0.025em;
+}
+
+.font-poppins {
+  font-family: var(--font-poppins), system-ui, sans-serif;
+}
+
+/* Enhanced typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-montserrat), system-ui, sans-serif;
+}
+
+p, a, li, span {
+  font-family: var(--font-poppins), system-ui, sans-serif;
+}
+
+/* Elegant transitions */
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
