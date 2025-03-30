@@ -29,6 +29,7 @@ export default function ImgContainer({ photo }: Props) {
                     sizes="250px"
                     placeholder="blur"
                     blurDataURL={photo.blurredDataUrl}
+                    loading="lazy" // Lazy load images
                     className="group-hover:opacity-75"
                 />
             </div>
