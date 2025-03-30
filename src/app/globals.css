@@ -10,7 +10,6 @@
 body {
   background-color: #ffffff;
   color: #1a1a1a;
-  font-display: swap; /* Ensure fonts load faster */
 }
 
 .font-montserrat {
