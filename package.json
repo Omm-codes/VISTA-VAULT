@@ -7,11 +7,10 @@
     "start": "next start",
     "lint": "next lint --max-warnings=0 || true",
     "build": "next build || true"
-
-
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
+    "@vercel/analytics": "^1.5.0",
     "envalid": "^8.0.0",
     "framer-motion": "^12.6.2",
     "next": "^14.2.9",
